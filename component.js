@@ -42,37 +42,48 @@ function Fifteen() {
     const classes = useStyles();
 
     const [tiles, setTiles] = useState([1,2,3,4,5,6,7,8,9,10,11,12,13,14,0,15]);
+    const [victory, setVictory] = useState(false);
+
+    const checkVictory = (tiles) => {
+      return tiles.findIndex((el, idx) => (idx + 1) % 16 !== el) === -1;
+    }
+
+    const performMove = useCallback((callback, payload) => {
+      if (!victory) {
+        setTiles(callback(tiles, payload));
+      }
+    }, [tiles, victory]);
 
     const handleUserKeyPress = useCallback((event) => {
         switch (event.key) {
           case 'A':
           case 'a':
           case 'ArrowLeft':
-            setTiles(moveLeft(tiles));
+            performMove(moveLeft);
             return;
   
           case 'D':
           case 'd':
           case 'ArrowRight':
-            setTiles(moveRight(tiles));
+            performMove(moveRight);
             return;
   
           case 'W':
           case 'w':
           case 'ArrowUp':
-            setTiles(moveUp(tiles));
+            performMove(moveUp);
             return;
 
           case 'S':
           case 's':
           case 'ArrowDown':
-            setTiles(moveDown(tiles));
+            performMove(moveDown);
             return;
   
           default:
             return;
         }      
-    }, [tiles]);
+    }, [performMove]);
 
     useEffect(() => {
       window.addEventListener("keydown", handleUserKeyPress);
@@ -81,13 +92,21 @@ function Fifteen() {
       };
     }, [handleUserKeyPress]);
 
+
+    if (!victory && checkVictory(tiles)) {
+      setVictory(true);
+
+      // TODO: actual win screen
+      console.log('GOOD JOB');
+    }
+
     return (
       <Container className={classes.container}>
       <Grid container className={classes.root}>
         {tiles.map((el, idx) => {
           return (<Grid container item
                     xs={3} className={`${el === 0 ? classes.hole : ""} ${classes.tileEmbed}`} key={el}
-                    onClick={() => setTiles(moveTile(tiles, idx))}>
+                    onClick={() => performMove(moveTile, idx)}>
               <Card className={classes.tile}>
                 <p className={classes.value} value={el}>{el}</p>
               </Card>

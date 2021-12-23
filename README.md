@@ -16,7 +16,7 @@ Use it as a component.
 ## Work that still needs to be done
 1. creation of the initial, randomized state
     - shuffle box + parity check
-2. win condition
+2. win screen
 
-## Note
-Given the way the grid is built, animating the moves seems unfeasible
+## Notes
+Given the way the grid is built, animating the moves seems unfeasible.
