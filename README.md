@@ -17,9 +17,9 @@ Use it as a component.
 1. controls
     - implement click/tap on tile
     - implement swipe
-2. support moves
-    - logical checks + swap tiles
-    - swap animation
-3. creation of the initial, randomized state
+2. creation of the initial, randomized state
     - shuffle box + parity check
-4. win condition
+3. win condition
+
+## Note
+Given the way the grid is built, animating the moves seems unfeasible
