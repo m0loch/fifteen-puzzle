@@ -14,10 +14,12 @@ Use it as a component.
 @material-ui/core
 
 ## Work that still needs to be done
-1. support moves
-    - tiles should support clicks / taps
+1. controls
+    - implement click/tap on tile
+    - implement swipe
+2. support moves
     - logical checks + swap tiles
     - swap animation
-2. creation of the initial, randomized state
+3. creation of the initial, randomized state
     - shuffle box + parity check
-3. win condition
+4. win condition

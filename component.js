@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Grid, Container, Card, makeStyles } from "@material-ui/core";
+import { moveLeft, moveRight, moveUp, moveDown } from './movesHandler';
 
 const useStyles = makeStyles({
   container: {
@@ -40,7 +41,45 @@ const useStyles = makeStyles({
 function Fifteen() {
     const classes = useStyles();
 
-    const tiles = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,0,15];
+    const [tiles, setTiles] = useState([1,2,3,4,5,6,7,8,9,10,11,12,13,14,0,15]);
+
+    const handleUserKeyPress = useCallback((event) => {
+        switch (event.key) {
+          case 'A':
+          case 'a':
+          case 'ArrowLeft':
+            setTiles(moveLeft(tiles));
+            return;
+  
+          case 'D':
+          case 'd':
+          case 'ArrowRight':
+            setTiles(moveRight(tiles));
+            return;
+  
+          case 'W':
+          case 'w':
+          case 'ArrowUp':
+            setTiles(moveUp(tiles));
+            return;
+
+          case 'S':
+          case 's':
+          case 'ArrowDown':
+            setTiles(moveDown(tiles));
+            return;
+  
+          default:
+            return;
+        }      
+    }, [tiles]);
+
+    useEffect(() => {
+      window.addEventListener("keydown", handleUserKeyPress);
+      return () => {
+        window.removeEventListener("keydown", handleUserKeyPress);
+      };
+    }, [handleUserKeyPress]);
 
     return (
       <Container className={classes.container}>
