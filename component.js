@@ -83,9 +83,9 @@ function Fifteen() {
 
     return (
       <Container className={classes.container}>
-      <Grid container spacing={12} className={classes.root}>
+      <Grid container className={classes.root}>
         {tiles.map(el => {
-          return (<Grid container item xs={3} className={`${el === 0 ? classes.hole : ""} ${classes.tileEmbed}`}>
+          return (<Grid container item xs={3} className={`${el === 0 ? classes.hole : ""} ${classes.tileEmbed}`} key={el}>
               <Card className={classes.tile}>
                 <p className={classes.value}>{el}</p>
               </Card>
