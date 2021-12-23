@@ -10,8 +10,14 @@ React component embedding a simple, classic puzzle.
 Import it as a submodule on git / import the code in the project.
 Use it as a component.
 
+## Required libraries
+@material-ui/core
+
 ## Work that still needs to be done
-1. create the 4x4 board with 15 tiles
-2. support moves
-3. creation of the initial, randomized state
-4. win condition
+1. support moves
+    - tiles should support clicks / taps
+    - logical checks + swap tiles
+    - swap animation
+2. creation of the initial, randomized state
+    - shuffle box + parity check
+3. win condition
