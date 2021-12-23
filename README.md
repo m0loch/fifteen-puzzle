@@ -14,12 +14,9 @@ Use it as a component.
 @material-ui/core
 
 ## Work that still needs to be done
-1. controls
-    - implement click/tap on tile
-    - implement swipe
-2. creation of the initial, randomized state
+1. creation of the initial, randomized state
     - shuffle box + parity check
-3. win condition
+2. win condition
 
 ## Note
 Given the way the grid is built, animating the moves seems unfeasible

@@ -24,7 +24,6 @@ function moveRight(state) {
 
 function moveUp(state) {
     const empty = state.findIndex(el => el === 0);
-    console.log(empty);
 
     if (empty >= 12) {
         return state;
@@ -47,4 +46,20 @@ function moveDown(state) {
     return retVal;
 }
 
-export { moveLeft, moveRight, moveUp, moveDown };
+function moveTile(state, tile) {
+    const empty = state.findIndex(el => el === 0);
+    const relativePos = tile - empty;
+
+    switch (relativePos) {
+        case 1: return moveLeft(state);
+        case -1: return moveRight(state);
+        case 4: return moveUp(state);
+        case -4: return moveDown(state);
+
+        default: break;
+    }
+
+    return state;
+}
+
+export { moveLeft, moveRight, moveUp, moveDown, moveTile };

@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { Grid, Container, Card, makeStyles } from "@material-ui/core";
-import { moveLeft, moveRight, moveUp, moveDown } from './movesHandler';
+import { moveLeft, moveRight, moveUp, moveDown, moveTile } from './movesHandler';
 
 const useStyles = makeStyles({
   container: {
@@ -84,10 +84,12 @@ function Fifteen() {
     return (
       <Container className={classes.container}>
       <Grid container className={classes.root}>
-        {tiles.map(el => {
-          return (<Grid container item xs={3} className={`${el === 0 ? classes.hole : ""} ${classes.tileEmbed}`} key={el}>
+        {tiles.map((el, idx) => {
+          return (<Grid container item
+                    xs={3} className={`${el === 0 ? classes.hole : ""} ${classes.tileEmbed}`} key={el}
+                    onClick={() => setTiles(moveTile(tiles, idx))}>
               <Card className={classes.tile}>
-                <p className={classes.value}>{el}</p>
+                <p className={classes.value} value={el}>{el}</p>
               </Card>
             </Grid>)
         })}
