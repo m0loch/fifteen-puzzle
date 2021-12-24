@@ -38,10 +38,41 @@ const useStyles = makeStyles({
   }
 });
 
+function getInitialConfiguration() {
+  const shuffleBag = [];
+  for (let i = 1; i <= 15; i++) {
+    shuffleBag.push(i);
+  }
+
+  const result = [];
+  let parity = true;
+
+  for (; shuffleBag.length > 2;) {
+    // takes a number out of the shuffle bag and inserts it at the end
+    let num = shuffleBag.splice(Math.floor(Math.random() * shuffleBag.length), 1)[0];
+    result.push(num);
+
+    // parity check - needed to keep the configuration in the domain of solvability
+    // eslint-disable-next-line
+    shuffleBag.forEach(item => {
+      if (num > item) {
+          parity = !parity;
+      }
+    });
+  }
+
+  // adds the last two numbers taking the parity into account
+  result.push(shuffleBag.splice(parity ? 0 : 1, 1)[0]);
+  result.push(shuffleBag[0]);
+  result.push(0);
+
+  return result;
+}
+
 function Fifteen() {
     const classes = useStyles();
 
-    const [tiles, setTiles] = useState([1,2,3,4,5,6,7,8,9,10,11,12,13,14,0,15]);
+    const [tiles, setTiles] = useState(getInitialConfiguration());
     const [victory, setVictory] = useState(false);
 
     const checkVictory = (tiles) => {
