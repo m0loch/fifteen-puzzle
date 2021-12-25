@@ -12,6 +12,3 @@ Use it as a component.
 
 ## Required libraries
 @material-ui/core
-
-## Work that still needs to be done
-- win screen
