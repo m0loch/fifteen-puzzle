@@ -14,8 +14,4 @@ Use it as a component.
 @material-ui/core
 
 ## Work that still needs to be done
-- try out animation using <Slide /> from https://mui.com/components/transitions/
 - win screen
-
-## Notes
-*(?)* Given the way the grid is built, animating the moves seems unfeasible.
